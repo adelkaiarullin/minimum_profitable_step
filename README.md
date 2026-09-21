@@ -7,7 +7,7 @@ In pairwise statistical arbitrage, trades target the spread. Basic strategy: ope
 Fasten your seatbelts, this won’t be the safest reading.
 
 ### Derivation of the minimum step formula
-The income from a trade on an arbitrage pair is generated when opening a position at the level (a long position on the left leg and a short position on the right leg, for example) $\text{spread}_{t}$ and closing at the level $\text{spread}_{t+1} = \text{spread}_{t} - step$. The yield is calculated using the formula
+The income from a trade on an arbitrage pair is generated when opening a position at the level (a long position on the left leg and a short position on the right leg, for example) $spread_{t}$ and closing at the level $spread_{t+1} = spread_{t} - step$. The yield is calculated using the formula
 
 $$
 \mathrm{trade}_{PnL} = \Delta P_{a} \cdot c_{a} - N_{hedge} \cdot \Delta P_{b} \cdot c_{b} \quad (1)
