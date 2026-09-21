@@ -17,13 +17,13 @@ $$
 We need $`\mathrm{trade}_{PnL} > 2 \cdot \text{commission} \cdot (1 + N_{hedge})`$, and based on this constraint, we will build all subsequent reasoning. The hedging coefficient is calculated as follows: $`N_{hedge} = \beta \cdot \frac{P_{a} \cdot c_{a}}{P_{b} \cdot c_{b}}`$, then formula (1) can be transformed into the following form.
 
 $$
-(R_{a} - 1) \cdot P_{a} \cdot c_{a} + \beta \cdot \frac{P_{a} \cdot c_{a}}{P_{b} \cdot c_{b}} \cdot (R_{b} - 1) \cdot P_{b} \cdot c_{b} > 2 \cdot \text{commission} \cdot (1 + N_{hedge}) \quad (2)
+(R_{a} - 1) \cdot P_{a} \cdot c_{a} - \beta \cdot \frac{P_{a} \cdot c_{a}}{P_{b} \cdot c_{b}} \cdot (R_{b} - 1) \cdot P_{b} \cdot c_{b} > 2 \cdot \text{commission} \cdot (1 + N_{hedge}) \quad (2)
 $$
 
 where $`R_{a}`$ and $`R_{b}`$ are the returns on the trade ($`P_{\text{close-trade}} / P_{\text{open-trade}}`$). Simplify the formula by removing the unnecessary parts
 
 $$
-R_{a} + \beta \cdot R_{b} > 1 + \beta + \frac{2 \cdot \text{commission} \cdot (1 + N_{hedge})}{P_{a} \cdot c_{a}} \quad (3)
+R_{a} + \beta \cdot R_{b} > 1 - \beta + \frac{2 \cdot \text{commission} \cdot (1 + N_{hedge})}{P_{a} \cdot c_{a}} \quad (3)
 $$
 
 In formula (3), $`R_{a}`$ and $`R_{b}`$ remain unknown, but the dimensionality of the problem can be reduced based on the assumption that the change in the spread $`\Delta \text{spread} = \ln R_{a} - \beta \cdot \ln R_{b}`$ can be expanded into a Taylor series, and only the first terms of the series can be taken, i.e., $`\ln R_{a} - \beta \cdot \ln R_{b} \approx (R_{a} - 1) - \beta \cdot (R_{b} - 1)`$, and inequality (3) can be rewritten as follows:
@@ -48,7 +48,7 @@ def min_spread_step_approx(
     commission: float = 4,
     k: int = 20,
 ) -> float:
-    """Numerical search for the minimum grid step by spread."""
+    """Finding the minimum grid spacing"""
     base_right_order = beta * (price_a * cs_a) / (price_b * cs_b)
     return k * 2 * commission * (1 + base_right_order) / (price_a * cs_a)
 ```
