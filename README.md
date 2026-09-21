@@ -23,7 +23,7 @@ $$
 where $`R_{a}`$ and $`R_{b}`$ are the returns on the trade ($`P_{\text{close-trade}} / P_{\text{open-trade}}`$). Simplify the formula by removing the unnecessary parts
 
 $$
-R_{a} + \beta \cdot R_{b} > 1 - \beta + \frac{2 \cdot \text{commission} \cdot (1 + N_{hedge})}{P_{a} \cdot c_{a}} \quad (3)
+R_{a} - \beta \cdot R_{b} > 1 - \beta + \frac{2 \cdot \text{commission} \cdot (1 + N_{hedge})}{P_{a} \cdot c_{a}} \quad (3)
 $$
 
 In formula (3), $`R_{a}`$ and $`R_{b}`$ remain unknown, but the dimensionality of the problem can be reduced based on the assumption that the change in the spread $`\Delta \text{spread} = \ln R_{a} - \beta \cdot \ln R_{b}`$ can be expanded into a Taylor series, and only the first terms of the series can be taken, i.e., $`\ln R_{a} - \beta \cdot \ln R_{b} \approx (R_{a} - 1) - \beta \cdot (R_{b} - 1)`$, and inequality (3) can be rewritten as follows:
